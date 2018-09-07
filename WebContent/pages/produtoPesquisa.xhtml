@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+template="/templates/template.xhtml"
+>
+
+<ui:define name="metadata">
+<f:metadata>
+
+<f:event listener="#{MBProdutos.prepararPesquisa}" 
+type="preRenderView" />
+</f:metadata>
+</ui:define>
+
+<ui:define name="conteudo">
+
+
+
+<h:form>
+<p:toolbar>
+<f:facet name="left">
+<h:outputText value="Produtos" />
+</f:facet>
+</p:toolbar>
+<h:panelGrid columns="4">
+<p:outputLabel value="Descrição:" />
+<p:inputText maxlength="50" size="30"/>
+<p:button value="Buscar" />
+<p:button value="Novo" outcome="/pages/produtoCadastro.xhtml" >
+<f:param name="proacao" value="Novo" />
+</p:button>
+</h:panelGrid>
+
+<p:dataTable emptyMessage="Nenhum Registro Cadastrado" value="#{MBProdutos.itens}"
+filteredValue="#{MBProdutos.itensFiltrados}"
+var="produto"
+rows="6"
+paginator="true"
+>
+<p:column headerText="Código">
+<h:outputText value="#{produto.codigo}" />
+</p:column>
+<p:column headerText="Nome" filterBy="#{produto.descricao}" sortBy="#{produto.descricao}">
+<h:outputText value="#{produto.descricao}" />
+</p:column>
+<p:column headerText="Preço" >
+<h:outputText value="#{produto.preco}" />
+</p:column>
+<p:column headerText="Quantidade" >
+<h:outputText value="#{produto.quantidade}" />
+</p:column>
+<p:column headerText="Fornecedor" filterBy="#{produto.fornecedor.descricao}">
+<h:outputText value="#{produto.fornecedor.descricao}" />
+</p:column>
+<p:column headerText="Opções">
+<p:button icon="ui-icon-pencil" outcome="/pages/produtoCadastro.xhtml" >
+<f:param name="procod" value="#{produto.codigo}" />
+<f:param name="proacao" value="Editar" />
+</p:button>
+<p:button icon="ui-icon-trash" outcome="/pages/produtoCadastro.xhtml" >
+<f:param name="procod" value="#{produto.codigo}" />
+<f:param name="proacao" value="Excluir" />
+</p:button>
+</p:column>
+</p:dataTable>
+
+</h:form>
+
+</ui:define>
+
+</ui:composition>

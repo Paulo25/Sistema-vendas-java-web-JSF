@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<ui:insert name="metadata" />	
+	
+<h:head>
+
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="scripts.js" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Layout Sistema</title>
+</h:head>
+<h:body>
+
+<p:growl id="msgGlobal"/>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" header="Sistema de Vendas"
+			resizable="false" closable="false" collapsible="false">
+
+		</p:layoutUnit>
+
+
+<!-- 		<p:layoutUnit position="south" -->
+<!-- 			header="Desenvolvido por Hugo Vasconcelos" resizable="false" -->
+<!-- 			closable="false" collapsible="false"> -->
+
+<!-- 		</p:layoutUnit> -->
+
+
+		<p:layoutUnit position="west" size="250" resizable="false"
+			closable="false" collapsible="false">
+
+			<h:form>
+				<p:panelMenu>
+
+					<p:submenu label="Arquivo">
+						<p:menuitem value="Principal"  outcome="/pages/principal.xhtml" />
+						<p:menuitem value="Sair" />
+					</p:submenu>
+
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Produtos" outcome="/pages/produtoPesquisa.xhtml" />
+						<p:menuitem value="Fornecedores" outcome="/pages/fornecedorPesquisa.xhtml"/>
+						<p:menuitem value="Funcionários" outcome="/pages/funcionarioPesquisa.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Vendas"  >
+					<p:menuitem value="Nova Venda" outcome="/pages/vendaCadastro.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Ajuda">
+					</p:submenu>
+
+				</p:panelMenu>
+			</h:form>
+			
+
+		</p:layoutUnit>
+
+
+		<p:layoutUnit position="center" resizable="false" closable="false"
+			collapsible="false">
+			<ui:insert name="conteudo" />
+		</p:layoutUnit>
+	</p:layout>
+
+</h:body>
+</html>
